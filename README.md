@@ -13,6 +13,6 @@ Timeline
 
 
 
-Reference of code structure 
----------------------------
-* Rebound by Hanno Rein https://github.com/hannorein/rebound
+Reference:
+----------
+* Code structure: Rebound by Hanno Rein https://github.com/hannorein/rebound

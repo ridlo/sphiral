@@ -84,3 +84,6 @@ int boundaries_particle_is_in_box(struct particle p){
     return 1;
 }
 
+// do nothing
+void boundaries_collision(){
+}

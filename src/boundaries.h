@@ -8,7 +8,7 @@ struct ghostbox{
     float shiftvx;
     float shiftvy;
     float shiftvz;
-}
+};
 
 // check if any particle has left the main box.
 void boundaries_check();
@@ -20,5 +20,8 @@ struct ghostbox boundaries_get_ghostbox(int i, int j, int k);
 extern int nghostx;
 extern int nghosty;
 extern int nghostz;
+
+// collision with some close boundaries
+void boundaries_collision();
 
 #endif

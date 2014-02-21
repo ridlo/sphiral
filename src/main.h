@@ -17,8 +17,25 @@ extern float softening;
 extern int exit_simulation;
 extern double timing_initial;
 
-//void init_box();
-//void iterate();
+extern int root_nx;
+extern int root_ny;
+extern int root_nz;
+extern int root_n;
+extern float boxsize;
+extern float boxsize_x;
+extern float boxsize_y;
+extern float boxsize_z;
+extern float boxsize_max;
+
+/*
+Initialize the box.
+This function needs to be called from problem_init() before any particles are added
+*/
+void init_box();
+void init_boxwidth(float _boxwidth);
+
+// Main iteration loop.
+void iterate();
 
 #endif
 

@@ -6,9 +6,11 @@
 #include "particle.h"
 #include "output.h"
 #include "tools.h"
-//#include "boundaries.h"
+#include "boundaries.h"
 
 void problem_init(int argc, char* argv[]){
+    
+    init_boxwidth(10);
     struct particle p1, p2;
     p1.x = tools_uniform(2., 3.);
     p1.y = tools_uniform(2., 3.);
