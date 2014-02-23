@@ -24,31 +24,47 @@ float kernel_function(float r, float h){
 }
 
 // partial{f}/partial{r} in direction of r
-float kernel_gradient(float r, float h){
+struct vec3d kernel_vec_gradient(float dx, float dy, float dz, float r, float h){
     float q = r/h;
     float alpha = 3./(2.*M_PI*h*h*h);// 3D
+    float prefactor;
     if (q >= 2.){
-        return 0;
+        prefactor = 0;
     }
     else if (q < 2. && > q >= 1.){
-        return alpha*(-2. + 2*q - 0.5*q*q)/h;
+        prefactor = alpha*0.5*(2-q)*(2-q)/h;
     }
     else{
-        return alpha*(-2*q + 1.5*q*q)/h;
+        prefactor = alpha*q*(-2 + 1.5*q)/h;
     }
+
+    struct vect3d grad;
+    grad.x = prefactor*dx/r; 
+    grad.y = prefactor*dy/r;
+    grad.z = prefactor*dz/r;
+    return grad;
 }
 
-float kernel_laplacian(float r, float h){
+// ra guno
+struct vec3d kernel_vec_laplacian(float dx, float dy, float dz, float r, float h){
     float q = r/h;
     float alpha = 3./(2.*M_PI*h*h*h);// 3D
+    float prefactor;
     if (q >= 2.){
-        return 0;
+        prefactor = 0;
     }
     else if (q < 2. && > q >= 1.){
-        return alpha*(-4./(h*r) + 6./(h*h) - 2.*r/(h*h*h));
+        prefactor = alpha*(-4./(h*r) + 6./(h*h) - 2.*r/(h*h*h));
     }
     else{
-        return alpha*(-6./(h*h) + 6.*r/(h*h*h);
+        prefactor = alpha*(-6./(h*h) + 6.*r/(h*h*h);
     }
+
+    struct vec3d laplacian;
+    laplacian.x = prefactor*dx/r;
+    laplacian.y = prefactor*dy/r;
+    laplacian.z = prefactor*dz/r;
+   
+    return laplacian;
 }
 

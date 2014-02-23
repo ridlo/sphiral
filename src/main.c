@@ -15,6 +15,9 @@
 #include "output.h"
 #include "tools.h"
 #include "boundaries.h"
+#include "eos.h"
+#include "kernel.h"
+#include "force.h"
 
 float t    = 0.;
 float dt   = 0.;
@@ -78,7 +81,7 @@ void iterate(){
     integrator_part1();
 
     // Check for root crossings
-    boundaries_check();
+    // boundaries_check();
     
     // Nearest-neighbour search
     // neighbor_search();
@@ -94,7 +97,7 @@ void iterate(){
 
     // Update acceleration
     // gravity, pressure, artificial viscosity, external
-    // force_calculate_acceleration();
+    force_calculate_acceleration();
     
     // Other input additional force
     // if(problem_additional_forces) problem_additional_forces();

@@ -9,8 +9,10 @@ int Nmax = 0;
 int N_active = -1;
 
 void particle_add(struct particle pt){
-    Nmax += 128;
-    particles = realloc(particles, sizeof(struct particle)*Nmax);
+    while (Nmax <= N){
+        Nmax += 128;
+        particles = realloc(particles, sizeof(struct particle)*Nmax);
+    }
     particles[N] = pt;
     N++;
 }

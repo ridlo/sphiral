@@ -1,3 +1,1 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "kernel.h"
+kernel_cubicspline.c

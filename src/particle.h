@@ -11,8 +11,11 @@ struct particle{
     float ax;
     float ay;
     float az;
-    float m;
-    float r;
+    float m; // mass
+    float r; // radius
+    float h; // smoothing length
+    float rho; // density
+    float P; // pressure
 };
 
 extern struct particle* particles;

@@ -12,10 +12,11 @@ void problem_init(int argc, char* argv[]){
     
     init_boxwidth(10);
     struct particle pt;
-    N = 2000;
+    N = 2500;
 
-    int i;
-    for (i=0; i<
+    int i, j, k;
+    for (i=0; i<50; i++){
+
     particle_add(pt);
     
 
