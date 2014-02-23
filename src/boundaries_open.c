@@ -11,6 +11,10 @@ int nghostx = 0;
 int nghosty = 0;
 int nghostz = 0;
 
+// do nothing
+void boundaries_collision(){
+}
+
 // remove outsider particle
 void boundaries_check(){
     int i;
@@ -84,6 +88,3 @@ int boundaries_particle_is_in_box(struct particle p){
     return 1;
 }
 
-// do nothing
-void boundaries_collision(){
-}

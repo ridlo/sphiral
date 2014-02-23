@@ -72,7 +72,41 @@ void init_boxwidth(float _boxwidth){
 
 
 void iterate(){    
-    // some iteration
+    // Main Loop
+        
+    // A 'DKD'-like integrator will do the first 'D' part
+    integrator_part1();
+
+    // Check for root crossings
+    boundaries_check();
+    
+    // Nearest-neighbour search
+    // neighbor_search();
+
+    // Smoothing kernel calculation
+    // kernel_calculation();
+    
+    // Density calculation
+    // density_calculation();
+
+    // Equation of state
+    // eos_calculation();
+
+    // Update acceleration
+    // gravity, pressure, artificial viscosity, external
+    // force_calculate_acceleration();
+    
+    // Other input additional force
+    // if(problem_additional_forces) problem_additional_forces();
+
+    // Other input additional inloop-problem
+    // problem_inloop();
+
+    // integrator_part2();
+
+    // Check for root crossings again
+    // boundaries_check();
+    // boundaries_collision();
 
     problem_output();
 

@@ -9,7 +9,9 @@ Contributors
 
 Timeline
 --------
-20/02/2014 - 21/02/2014 initialize the nbody engine
+20/02/2014  initialize the nbody engine
+21/02/2014  construct the main loop engine
+            learn git
 
 
 

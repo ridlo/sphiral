@@ -11,6 +11,10 @@ int nghostx = 1;
 int nghosty = 1;
 int nghostz = 1;
 
+// do nothing
+void boundaries_collision(){
+}
+
 void boundaries_check(){
     int i;
     for (i=0; i<N; i++){
@@ -46,6 +50,3 @@ struct ghostbox boundaries_get_ghostbox(int i, int j, int k){
     return gb;
 }
 
-// do nothing
-void boundaries_collision(){
-}
