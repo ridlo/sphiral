@@ -10,20 +10,38 @@
 
 void problem_init(int argc, char* argv[]){
     
-    init_boxwidth(10);
+    init_boxwidth(4);
     struct particle pt;
-    N = 2500;
-
-    int i, j, k;
-    for (i=0; i<50; i++){
-
-    particle_add(pt);
     
+    FILE *ptr_file;
+    char buf[1000];
+    ptr_file = fopen("input_Planet.dat", "r");
+    if (ptr_file==NULL){
+        perror("Error while opening the file\n");
+        exit(EXIT_FAILURE);
+    }
 
+    float m, x, y, z, vx, vy, vz;
+    while (fgets(buf, 1000, ptr_file)!= NULL){
+        sscanf(buf, "%f %f %f %f %f %f %f", &m, &x, &y, &z, &vx, &vy, &vz);
+        pt.x = x;
+        pt.y = y;
+        pt.z = z;
+        pt.vx = vx;
+        pt.vy = vy;
+        pt.vz = vz;
+        pt.m = m;
+        pt.r = 0.01;
+        pt.h = 0.0;
+        pt.rho = 1.1;
+        pt.P = 0.0;
+        particle_add(pt);
+    }
+    fclose(ptr_file);
 }
 
 void problem_output(){
-    output_particle_pos();
+    output_pos_asciifile("position");
 }
 
 void problem_inloop(){

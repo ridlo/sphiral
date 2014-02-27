@@ -15,14 +15,13 @@
 #include "output.h"
 #include "tools.h"
 #include "boundaries.h"
-#include "eos.h"
 #include "kernel.h"
 #include "force.h"
 
 float t    = 0.;
-float dt   = 0.;
-float tmax = 0.;
-float G    = 0.;
+float dt   = 0.005;
+float tmax = 2.5;
+float G    = 1.;
 float softening        = 0.;
 double timing_initial  = -1;
 int exit_simulation    = 0;
@@ -79,46 +78,39 @@ void iterate(){
         
     // A 'DKD'-like integrator will do the first 'D' part
     integrator_part1();
-
+    
     // Check for root crossings
     // boundaries_check();
     
-    // Nearest-neighbour search
-    // neighbor_search();
-
-    // Smoothing kernel calculation
-    // kernel_calculation();
-    
-    // Density calculation
-    // density_calculation();
-
-    // Equation of state
-    // eos_calculation();
-
     // Update acceleration
     // gravity, pressure, artificial viscosity, external
-    force_calculate_acceleration();
+    force_calc_acceleration();
     
     // Other input additional force
     // if(problem_additional_forces) problem_additional_forces();
 
     // Other input additional inloop-problem
-    // problem_inloop();
-
-    // integrator_part2();
+    problem_inloop();
+    
+    // move particle
+    integrator_part2();
 
     // Check for root crossings again
     // boundaries_check();
     // boundaries_collision();
-
+    
+    // output from iteration
     problem_output();
+    
+    if ((t>=tmax && tmax != 0.0) || exit_simulation == 1){
+        problem_finish();
+        struct timeval tim;
+        gettimeofday(&tim, NULL);
+        double timing_final = tim.tv_sec+(tim.tv_usec/1000000.0);
+        printf("\nComputation finished. Total runtime: %f s\n", timing_final - timing_initial);
 
-    struct timeval tim;
-    gettimeofday(&tim, NULL);
-    double timing_final = tim.tv_sec+(tim.tv_usec/1000000.0);
-    printf("\nComputation finished. Total runtime: %f s\n", timing_final - timing_initial);
-
-    exit(0);
+        exit(0);
+    }
 
 }
 
@@ -162,7 +154,10 @@ int main(int argc, char *argv[]){
     /* -------------------- */
 
     problem_init(argc, argv);
-    iterate();
+   
+    while(1){
+        iterate();
+    }
 
     return 0;
 }
