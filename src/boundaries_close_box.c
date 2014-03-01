@@ -125,9 +125,9 @@ void boundaries_check(){
 
 struct ghostbox boundaries_get_ghostbox(int i, int j, int k){
     struct ghostbox gb;
-    gb.shiftx = boxsize_x*(float)i;
-    gb.shifty = boxsize_y*(float)j;
-    gb.shiftz = boxsize_z*(float)k;
+    gb.shiftx = boxsize_x*(double)i;
+    gb.shifty = boxsize_y*(double)j;
+    gb.shiftz = boxsize_z*(double)k;
     gb.shiftvx = 0;
     gb.shiftvy = 0;
     gb.shiftvz = 0;

@@ -1,10 +1,6 @@
-/**
-* MAIN
-* 
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <math.h>
 #include <time.h>
 #include <stdbool.h>
@@ -12,27 +8,30 @@
 #include <sys/time.h>
 
 #include "particle.h"
+#include "problem.h"
+#include "integrator.h"
 #include "output.h"
 #include "tools.h"
 #include "boundaries.h"
 #include "kernel.h"
+#include "eos.h"
+#include "gravityinteract.h"
 #include "force.h"
+#include "main.h"
 
-float t    = 0.;
-float dt   = 0.005;
-float tmax = 2.5;
-float G    = 1.;
-float softening        = 0.;
+double t    = 0.;
+double dt   = 0.005;
+double tmax = 0.5;
 double timing_initial  = -1;
 int exit_simulation    = 0;
 
 static char* logo[];
 
-float boxsize     = -1;
-float boxsize_x   = -1;
-float boxsize_y   = -1;
-float boxsize_z   = -1;
-float boxsize_max = -1;
+double boxsize     = -1;
+double boxsize_x   = -1;
+double boxsize_y   = -1;
+double boxsize_z   = -1;
+double boxsize_max = -1;
 int root_nx = 1;
 int root_ny = 1;
 int root_nz = 1;
@@ -54,9 +53,9 @@ void init_box(){
     particles = NULL;
 
     // Setup box sizes
-    boxsize_x = boxsize*(float)root_nx;
-    boxsize_y = boxsize*(float)root_ny;
-    boxsize_z = boxsize*(float)root_nz;
+    boxsize_x = boxsize*(double)root_nx;
+    boxsize_y = boxsize*(double)root_ny;
+    boxsize_z = boxsize*(double)root_nz;
     root_n = root_nx*root_ny*root_nz;
 
     boxsize_max = boxsize_x;
@@ -67,7 +66,7 @@ void init_box(){
     printf("Initialized %d*%d*%d root boxes. Process id: %d\n", root_nx, root_ny, root_nz, getpid());
 }
 
-void init_boxwidth(float _boxwidth){
+void init_boxwidth(double _boxwidth){
     boxsize = _boxwidth;
     init_box();
 }

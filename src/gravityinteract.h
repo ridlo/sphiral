@@ -1,10 +1,11 @@
 #ifndef GRAVITYINTERACT_H
-#define
+#define GRAVITYINTERACT_H
 
-// calculate gravity force of to a particle
-void gravityinteract_calculate_acceleration();
+extern double G;
+extern double gravity_constant;
 
-extern float gravity_constant;
+void gravityinteract_calculate_acceleration(); // calculate gravity force of to a particle
+
 
 #endif
 

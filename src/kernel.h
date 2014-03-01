@@ -1,24 +1,13 @@
 #ifndef KERNEL_H
 #define KERNEL_H
 
-struct vec3d{
-    float x;
-    float y;
-    float z;
-};
+extern double tensil_correction;
 
-extern float tensil_correction;
+double kernel_function(double r, double h); // smoothing kernel function
 
-// smoothing kernel function
-float kernel_function(float r, float h);
-
-// gradient of smoothing kernel
-struct vec3d kernel_vec_gradient(float dx, float dy, float dz, float r, float h);
-
-// gravity kernel
-struct vec3d kernel_gravity_gradient(float dx, float dy, float dz, float r, float h);
+struct vec3d kernel_vec_gradient(double dx, double dy, double dz, double r, double h); // gradient of smoothing kernel
 
 // laplacian of smoothing kernel
-//struct vec3d kernel_vec_laplacian(float dx, float dy, float dz, float r, float h);
+// struct vec3d kernel_vec_laplacian(double dx, double dy, double dz, double r, double h);
 
 #endif

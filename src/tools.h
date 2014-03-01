@@ -3,8 +3,8 @@
 #include "particle.h"
 
 // "random distribution"
-float tools_uniform(float min, float max);
+double tools_uniform(double min, double max);
 
-float tools_normal(float variance);
+double tools_normal(double variance);
 
 #endif

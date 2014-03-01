@@ -1,1 +1,1 @@
-eos_water.c
+eos_polytrop.c

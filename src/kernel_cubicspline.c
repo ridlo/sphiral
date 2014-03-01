@@ -8,14 +8,12 @@
 #include "force.h"
 #include "kernel.h"
 
-float tensil_correction = 0.666666666666667;
+double tensil_correction = 0.666666666666667;
 
 // Piecewise Cubic Spline: Monaghan and Lattanzio (1985)
-// ! Need tensil correction -> 2/3
-// r is distance 
-float kernel_function(float r, float h){
-    float q = r/h;
-    float alpha = 3./(2.*M_PI*h*h*h);
+double kernel_function(double r, double h){
+    double q = r/h;
+    double alpha = 3./(2.*M_PI*h*h*h);
     if (q >= 2.){
         return 0.;
     }
@@ -27,12 +25,11 @@ float kernel_function(float r, float h){
     }
 }
 
-// partial{f}/partial{r} in direction of r
-struct vec3d kernel_vec_gradient(float dx, float dy, float dz, float r, float h){
+struct vec3d kernel_vec_gradient(double dx, double dy, double dz, double r, double h){
     struct vec3d grad;
-    float q = r/h;
-    float alpha = 3./(2.*M_PI*h*h*h);
-    float prefactor;
+    double q = r/h;
+    double alpha = 3./(2.*M_PI*h*h*h);
+    double prefactor;
     if (q >= 2.){
         prefactor = 0;
     }
@@ -49,32 +46,12 @@ struct vec3d kernel_vec_gradient(float dx, float dy, float dz, float r, float h)
     return (grad);
 }
 
-struct vec3d kernel_gravity_gradient(float dx, float dy, float dz, float r, float h){
-    struct vec3d gravity;
-    float q = r/h;
-    float prefactor;
-    if (q >= 2){
-        prefactor = 1./(r*r);
-    }
-    else if (q < 2. && q >= 1.){
-        prefactor = (8.*q/3.  - 3.*q*q + 6.*q*q*q/5. - q*q*q*q/6. - 1./(15*q*q))/(h*h);
-    }
-    else{
-        prefactor = (4.*q - 6.*q*q*q/5. + 0.5*q*q*q*q)/(h*h);
-    }
-
-    gravity.x = prefactor*dx/r;
-    gravity.y = prefactor*dy/r;
-    gravity.z = prefactor*dz/r;
-    return (gravity);
-}
-
 // ra guno
 /*
-struct vec3d kernel_vec_laplacian(float dx, float dy, float dz, float r, float h){
-    float q = r/h;
-    float alpha = 3./(2.*M_PI*h*h*h);// 3D
-    float prefactor;
+struct vec3d kernel_vec_laplacian(double dx, double dy, double dz, double r, double h){
+    double q = r/h;
+    double alpha = 3./(2.*M_PI*h*h*h);// 3D
+    double prefactor;
     if (q >= 2.){
         prefactor = 0;
     }

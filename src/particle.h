@@ -2,23 +2,28 @@
 #define PARTICLE_H
 
 struct particle{
-    float x;
-    float y;
-    float z;
-    float vx;
-    float vy;
-    float vz;
-    float ax;
-    float ay;
-    float az;
-    float m; // mass
-    float r; // radius
-    float h; // smoothing length
-    float rho; // density
-    float P; // pressure
+    double x;
+    double y;
+    double z;
+    double vx;
+    double vy;
+    double vz;
+    double ax;
+    double ay;
+    double az;
+    double m; // mass
+    double r; // radius
+    double h; // smoothing length
+    double c; // speed of sound
+    double rho; // density
+    double P; // pressure
+    double E; // internal energy
 };
 
 extern struct particle* particles;
+extern int N;
+extern int Nmax;
+extern int N_active;
 
 void particle_add(struct particle pt);
 

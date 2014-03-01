@@ -1,0 +1,6 @@
+#gnuplot input file
+set xrange [-2:2]
+set yrange [-2:2]
+set zrange [-2:2]
+set view 0,0,1,1
+splot "input_Planet.dat" u 2:3:4 w d, "position_0.050000.dat" u 1:2:3

@@ -2,12 +2,12 @@
 #define BOUNDARIES_H
 
 struct ghostbox{
-    float shiftx;
-    float shifty;
-    float shiftz;
-    float shiftvx;
-    float shiftvy;
-    float shiftvz;
+    double shiftx;
+    double shifty;
+    double shiftz;
+    double shiftvx;
+    double shiftvy;
+    double shiftvz;
 };
 
 
