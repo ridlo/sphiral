@@ -100,6 +100,7 @@ void force_calc_acceleration(){
         particles[j].rho += particles[i].m*w[k];
     }
 
+    //printf("%lf\n", particles[0].rho);
     
     // @TODO normalized density - modified
 
@@ -120,15 +121,16 @@ void force_calc_acceleration(){
     for (int k=0; k<niac; k++){
         int i = pair_i[k];
         int j = pair_j[k];
+        double precalc;
         double factor_P;
         double factor_v;
-        double precalc;
         
-        // pressure gradient term 
-        //factor_P = 2.*sqrt(particles[i].P*particles[j].P)/(particles[i].rho*particles[j].rho);
+        /* pressure gradient term ------------- */
         factor_P = particles[i].P/(particles[i].rho*particles[i].rho) + particles[j].P/(particles[j].rho*particles[j].rho);
+        //factor_P = 2.*sqrt(particles[i].P*particles[j].P)/(particles[i].rho*particles[j].rho);
         
-        // viscosity term
+
+        /* viscosity term --------------------- */
         double dotvr; // dot product v_ij & r_ij
         double dvx = particles[i].vx - particles[j].vx;
         double dvy = particles[i].vy - particles[j].vy;
@@ -159,6 +161,7 @@ void force_calc_acceleration(){
         particles[j].az += particles[i].m*precalc*dw[k].z;
     }
     
+
     /* acceleration from gravity interaction ------------ */
     gravityinteract_calculate_acceleration();
     

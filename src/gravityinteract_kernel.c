@@ -36,8 +36,6 @@ struct vec3d kernel_gravity_gradient(double dx, double dy, double dz, double r, 
 
 void gravityinteract_calculate_acceleration(){
     struct vec3d dpsi;
-    //struct vec3d  dpsi_i;
-    //struct vec3d dpsi_j;
     for (int i=0; i<N; i++){
         for (int j=0; j<N; j++){
             if (i==j){
@@ -47,16 +45,10 @@ void gravityinteract_calculate_acceleration(){
                 double dx = particles[i].x - particles[j].x;
                 double dy = particles[i].y - particles[j].y;
                 double dz = particles[i].z - particles[j].z;
-                double r = sqrt(dx*dx + dy*dy + dz*dz); // distance
+                double r = sqrt(dx*dx + dy*dy + dz*dz);
                 double h_ij = 0.5*(particles[i].h + particles[j].h);
-                /*
-                dpsi_i = kernel_gravity_gradient(dx, dy, dz, r, particles[i].h);
-                dpsi_j = kernel_gravity_gradient(dx, dy, dz, r, particles[j].h);
-                dpsi.x = 0.5*(dpsi_i.x + dpsi_j.x);
-                dpsi.y = 0.5*(dpsi_i.y + dpsi_j.y);
-                dpsi.z = 0.5*(dpsi_i.z + dpsi_j.z);
-                */
                 dpsi = kernel_gravity_gradient(dx, dy, dz, r, h_ij);
+                
                 particles[i].ax -= 0.5*G*particles[j].m*dpsi.x;
                 particles[i].ay -= 0.5*G*particles[j].m*dpsi.y;
                 particles[i].az -= 0.5*G*particles[j].m*dpsi.z;

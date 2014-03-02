@@ -9,6 +9,7 @@
 extern double t;
 extern double dt;
 extern double tmax;
+extern int count_step;
 extern int exit_simulation;
 extern double timing_initial;
 

@@ -7,7 +7,7 @@
 #include "boundaries.h"
 #include "problem.h"
 
-double G = 1.;
+double G = -1;
 // constant of gravity (for simulation on "Earth")
 double gravity_constant = 9.8;
 

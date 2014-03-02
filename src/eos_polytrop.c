@@ -8,7 +8,7 @@
 #include "kernel.h"
 #include "eos.h"
 
-double K   = 0.015;
+double K   = 1;
 double gam = 2;
 
 void eos_calculate_pressure(){

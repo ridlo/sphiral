@@ -11,9 +11,6 @@ struct ghostbox{
 };
 
 
-// collision with some close boundaries
-void boundaries_collision(struct particle pt, int id_boundaries);
-
 // check if any particle has left the main box.
 void boundaries_check();
 

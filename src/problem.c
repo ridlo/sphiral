@@ -10,7 +10,7 @@
 
 void problem_init(int argc, char* argv[]){
     
-    init_boxwidth(4);
+    init_boxwidth(6);
     
     struct particle pt;
 
@@ -45,7 +45,8 @@ void problem_init(int argc, char* argv[]){
 }
 
 void problem_output(){
-    output_pos_asciifile("position");
+    //output_pos_asciifile("position");
+    output_pos_binary("position");
 }
 
 void problem_inloop(){

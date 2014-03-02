@@ -4,6 +4,8 @@
 #include <time.h>
 #include "particle.h"
 #include "main.h"
+#include "problem.h"
+#include "force.h"
 #include "integrator.h"
 #include "boundaries.h"
 
@@ -11,14 +13,10 @@ int nghostx = 0;
 int nghosty = 0;
 int nghostz = 0;
 
-// do nothing
-void boundaries_collision(){
-}
 
 // remove outsider particle
 void boundaries_check(){
-    int i;
-    for (i=0; i<N; i++){
+    for (int i=0; i<N; i++){
         int removep = 0;
         if (particles[i].x > boxsize_x/2.){
             removep = 1;

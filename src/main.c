@@ -22,6 +22,7 @@
 double t    = 0.;
 double dt   = 0.005;
 double tmax = 0.5;
+int count_step         = 0;
 double timing_initial  = -1;
 int exit_simulation    = 0;
 
@@ -79,7 +80,7 @@ void iterate(){
     integrator_part1();
     
     // Check for root crossings
-    // boundaries_check();
+    boundaries_check();
     
     // Update acceleration
     // gravity, pressure, artificial viscosity, external
@@ -97,6 +98,8 @@ void iterate(){
     // Check for root crossings again
     // boundaries_check();
     // boundaries_collision();
+    
+    count_step++;
     
     // output from iteration
     problem_output();

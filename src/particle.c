@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "main.h"
+#include "boundaries.h"
 #include "particle.h"
 
 struct particle* particles;
