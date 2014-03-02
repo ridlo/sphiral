@@ -9,7 +9,7 @@
 #include <GL/glut.h>
 #define dt 0.005
 
-int number_of_file = 52;
+int number_of_file = 499;
 int count_step = 1;
 int N;
 int Nmax;
@@ -177,17 +177,17 @@ void keyboard(unsigned char key, int x, int y){
         if (!f) glutTimerFunc(tpm,myIdleFunc, 0);
         f = true;
     }
-    else if ((char)key == 's'){ // next step
+    else if ((char)key == 's'){ // pause
+        f = false;
+    }
+    else if ((char)key == 'd'){ // next step
         read_inputfile(prefixname);
         glutPostRedisplay();
     }
-    else if ((char)key == 'd'){ // previous step
+    else if ((char)key == 'f'){ // previous step
         count_step -= 2;
         read_inputfile(prefixname);
         glutPostRedisplay();
-    }
-    else if ((char)key == 'f'){ // pause
-        f = false;
     }
     else if ((char)key == 'g'){ // restart
         count_step = 1;
