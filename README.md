@@ -1,5 +1,5 @@
-SPHIRAL - An open source multi-purpose SPH code: just for fun
-=============================================================
+SPHIRAL - An open source multi-purpose SPH code: TRIAL
+===============================================
 
 Contributors
 ------------
